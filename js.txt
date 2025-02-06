@@ -1,0 +1,32 @@
+function fetchPrayerTimes() {
+    const city = document.getElementById('city').value.trim();
+    if (!city) {
+        alert("Please enter a city name.");
+        return;
+    }
+
+    const url = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=US&method=2`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.code !== 200) {
+                alert("Error fetching prayer times. Please check the city name.");
+                return;
+            }
+
+            const prayerTimes = data.data.timings;
+            const prayerTimesDiv = document.getElementById('prayer-times');
+            prayerTimesDiv.innerHTML = ''; // Clear previous results
+
+            for (const [key, value] of Object.entries(prayerTimes)) {
+                const paragraph = document.createElement('p');
+                paragraph.textContent = `${key}: ${value}`;
+                prayerTimesDiv.appendChild(paragraph);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("An error occurred while fetching prayer times.");
+        });
+}

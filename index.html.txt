@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Timings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Prayer Timings</h1>
+        <div id="location">
+            <label for="city">Enter City:</label>
+            <input type="text" id="city" placeholder="e.g., New York">
+            <button onclick="fetchPrayerTimes()">Get Prayer Times</button>
+        </div>
+        <div id="prayer-times" class="prayer-times"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
